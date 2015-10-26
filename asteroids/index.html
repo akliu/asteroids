@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <canvas id="game-canvas", height="700", width="700"></canvas>
+    <script src="lib/util.js"></script>
+    <script src="lib/movingObject.js"></script>
+    <script src="lib/asteroid.js"></script>
+    <script src="lib/ship.js"></script>
+    <script src="lib/game.js"></script>
+    <script src="lib/gameView.js"></script>
+    <script>
+      var canvasEl = document.getElementById("game-canvas");
+      var game = new Asteroids.Game();
+      var gameView = new Asteroids.GameView(game, canvasEl.getContext("2d"));
+      gameView.start();
+    </script>
+  </body>
+</html>
