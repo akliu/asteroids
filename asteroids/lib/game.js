@@ -11,38 +11,52 @@
   var Game = Asteroids.Game = function () {
     this.xDim = DIM_X;
     this.yDim = DIM_Y;
-    this.asteroids = this.addAsteroids();
-    this.ship = new Asteroids.Ship(this.randomPosition(), this);
+    // this.asteroids = this.addAsteroids();
+    this.asteroids = [];
+    this.bullets = [];
+    // this.ship = this.addShip( );
+    this.ships = [];
+
+    this.addAsteroids();
+  };
+
+  Game.prototype.addShip = function () {
+    var ship = new Asteroids.Ship({
+      pos: this.randomPosition(),
+      game: this
+    });
+
+    this.ships.push(ship);
+    return ship;
   };
 
   Game.prototype.allObjects = function () {
-    var copyAsteroids = this.asteroids.slice();
-    copyAsteroids.push(this.ship);
-    return copyAsteroids;
+    return [].concat(this.ships, this.asteroids, this.bullets);
   };
 
   Game.prototype.randomPosition = function () {
     return [this.xDim * Math.random(), this.yDim * Math.random()];
   };
 
-  Game.prototype.addShip = function () {
-    var ship = new Asteroids.Ship( this.randomPosition(), this);
-
-    this.ship = ship;
-
-    return ship;
+  Game.prototype.addBullet = function(bullet) {
+    this.bullets.push(bullet);
   };
 
+  // Game.prototype.addShip = function () {
+  //   var ship = new Asteroids.Ship( this.randomPosition(), this);
+  //
+  //   this.ship = ship;
+  //
+  //   return ship;
+  // };
+
   Game.prototype.addAsteroids = function () {
-    var asteroids = [];
     for (var i = 0; i < NUM_ASTEROIDS; i++){
-      asteroids.push(new Asteroids.Asteroid({
+      this.asteroids.push(new Asteroids.Asteroid({
         pos: this.randomPosition(),
         game: this
       }));
     }
-
-    return asteroids;
   };
 
   Game.prototype.draw = function (ctx) {
@@ -103,17 +117,19 @@
   };
 
   Game.prototype.remove = function (object) {
-    var result = [];
-    for (var i = 0; i < this.asteroids.length; i++) {
-      var xPos = object.pos[0];
-      var yPos = object.pos[1];
-      if (this.asteroids[i].pos[0] !== xPos && this.asteroids[i].pos[1] !== yPos) {
-        // debugger
-        result.push(this.asteroids[i]);
+    if (object instanceof Asteroids.Asteroid) {
+      var result = [];
+      for (var i = 0; i < this.asteroids.length; i++) {
+        var xPos = object.pos[0];
+        var yPos = object.pos[1];
+        if (this.asteroids[i].pos[0] !== xPos && this.asteroids[i].pos[1] !== yPos) {
+          result.push(this.asteroids[i]);
+        }
       }
+      this.asteroids = result;
+    } else if (object instanceof Asteroids.Bullet) {
+      this.bullets.splice(this.bullets.indexOf(object), 1);
     }
-    this.asteroids = result;
-
   };
 
 })();

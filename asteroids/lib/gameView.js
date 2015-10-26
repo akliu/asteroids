@@ -27,6 +27,10 @@
       });
     });
 
+    key("space", function () {
+      ship.fireBullet();
+    });
+
   };
 
   GameView.prototype.start = function () {

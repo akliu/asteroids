@@ -3,21 +3,17 @@
     window.Asteroids = {};
   }
 
-  var COLOR = "#A52A2A";
-  var RADIUS = 10;
 
-  var Asteroid = Asteroids.Asteroid = function () {
+  var Asteroid = Asteroids.Asteroid = function (options) {
+    options.vel = Asteroids.Util.randomVelocity();
+    options.radius = Asteroid.RADIUS;
+    options.color = Asteroid.COLOR;
 
-
-    Asteroids.MovingObject.call(this,
-    arguments[0].pos,
-    Asteroids.Util.randomVelocity(),
-    RADIUS,
-    COLOR,
-    arguments[0].game
-  );
+    Asteroids.MovingObject.call(this, options);
   };
 
+  Asteroid.COLOR = "#A52A2A";
+  Asteroid.RADIUS = 10;
   Asteroids.Util.inherits(Asteroid, Asteroids.MovingObject);
 
   Asteroid.prototype.collideWith = function (otherObject) {

@@ -3,12 +3,19 @@
     window.Asteroids = {};
   }
 
-  var MovingObject = Asteroids.MovingObject = function (pos, vel, radius, color, game) {
-    this.pos = pos;
-    this.vel = vel;
-    this.radius = radius;
-    this.color = color;
-    this.game = game;
+  // var MovingObject = Asteroids.MovingObject = function (pos, vel, radius, color, game) {
+  //   this.pos = pos;
+  //   this.vel = vel;
+  //   this.radius = radius;
+  //   this.color = color;
+  //   this.game = game;
+  // };
+  var MovingObject = Asteroids.MovingObject = function (options) {
+    this.pos = options.pos;
+    this.vel = options.vel;
+    this.radius = options.radius;
+    this.color = options.color;
+    this.game = options.game;
   };
 
   MovingObject.prototype.draw = function(ctx){
@@ -52,6 +59,6 @@
   MovingObject.prototype.collideWith = function (otherObject) {
     // this.game.remove(otherObject);
     // this.game.remove(this);
-  }
+  };
 
 })();
