@@ -25,6 +25,14 @@
     return [this.xDim * Math.random(), this.yDim * Math.random()];
   };
 
+  Game.prototype.addShip = function () {
+    var ship = new Asteroids.Ship( this.randomPosition(), this);
+
+    this.ship = ship;
+
+    return ship;
+  };
+
   Game.prototype.addAsteroids = function () {
     var asteroids = [];
     for (var i = 0; i < NUM_ASTEROIDS; i++){
