@@ -105,15 +105,21 @@
     return wrappedPos;
   };
 
-  Game.prototype.checkCollisions = function (){
-    for(var i = 0; i < (this.allObjects().length - 1); i++){
-      for(var j = (i + 1); j < this.allObjects().length; j++){
-        if (this.allObjects()[i].isCollidedWith(this.allObjects()[j])) {
-          // alert("COLLISION");
-          this.allObjects()[i].collideWith(this.allObjects()[j]);
+  Game.prototype.checkCollisions = function () {
+    var game = this;
+
+    this.allObjects().forEach(function (obj1) {
+      game.allObjects().forEach(function (obj2) {
+        if (obj1 == obj2) {
+          // don't allow self-collision
+          return;
         }
-      }
-    }
+
+        if (obj1.isCollidedWith(obj2)) {
+          obj1.collideWith(obj2);
+        }
+      });
+    });
   };
 
   Game.prototype.remove = function (object) {
