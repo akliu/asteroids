@@ -15,11 +15,11 @@
 
   Asteroids.Util.inherits(Bullet, Asteroids.MovingObject);
 
+  Bullet.prototype.isWrappable = false;
+
   Bullet.prototype.collideWith  = function (otherObject) {
 
-    if (otherObject instanceof Asteroids.Asteroid) {
-      // this.remove();
-      // otherObject.remove();
+    if (otherObject instanceof Asteroids.Asteroid){
       this.game.remove(otherObject);
       this.game.remove(this);
     }

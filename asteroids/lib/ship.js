@@ -23,12 +23,13 @@
   };
 
   Ship.prototype.fireBullet = function () {
+    // debugger
     var norm = Asteroids.Util.norm(this.vel);
 
-    // if (norm == 0) {
-    //   // Can't fire unless moving.
-    //   return;
-    // }
+    if (norm === 0) {
+      // Can't fire unless moving.
+      return;
+    }
 
     var relVel = Asteroids.Util.scale(
       Asteroids.Util.dir(this.vel),
@@ -40,7 +41,7 @@
     ];
 
     var bullet = new Asteroids.Bullet({
-      pos: this.pos,
+      pos: this.pos.slice(),
       vel: bulletVel,
       // color: this.color,
       game: this.game

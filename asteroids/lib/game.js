@@ -67,8 +67,8 @@
   };
 
   Game.prototype.moveObjects = function () {
-    this.allObjects().forEach(function(asteroid) {
-      asteroid.move();
+    this.allObjects().forEach(function(object) {
+      object.move();
     });
   };
 
@@ -136,6 +136,11 @@
     } else if (object instanceof Asteroids.Bullet) {
       this.bullets.splice(this.bullets.indexOf(object), 1);
     }
+  };
+
+  Game.prototype.isOutOfBounds = function (pos) {
+    return (pos[0] < 0) || (pos[1] < 0) ||
+      (pos[0] > DIM_X) || (pos[1] > DIM_Y);
   };
 
 })();
