@@ -21,7 +21,7 @@
   MovingObject.prototype.isWrappable = true;
 
   MovingObject.prototype.draw = function(ctx){
-    ctx.fillstyle = this.color;
+    ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.arc(
       this.pos[0],

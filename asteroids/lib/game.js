@@ -18,6 +18,8 @@
     this.ships = [];
 
     this.addAsteroids();
+
+
   };
 
   Game.prototype.addShip = function () {
@@ -59,11 +61,14 @@
     }
   };
 
-  Game.prototype.draw = function (ctx) {
+  Game.prototype.draw = function (ctx, img) {
     ctx.clearRect(0, 0, this.xDim, this.yDim);
-    this.allObjects().forEach(function(asteroid) {
-      asteroid.draw(ctx);
-    });
+
+    ctx.drawImage(img, 0, 0);
+
+    this.allObjects().forEach(function(object) {
+      object.draw(ctx);
+    }.bind(this));
   };
 
   Game.prototype.moveObjects = function () {
