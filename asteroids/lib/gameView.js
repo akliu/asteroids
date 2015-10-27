@@ -12,10 +12,10 @@
   };
 
   GameView.MOVES = {
-    "w": [ 0, -1],
-    "a": [-1,  0],
-    "s": [ 0,  1],
-    "d": [ 1,  0],
+    "up": "thrust",
+    "left": "rotateLeft",
+    "down": "brake",
+    "right": "rotateRight",
   };
 
 
