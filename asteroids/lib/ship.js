@@ -37,26 +37,43 @@
   };
 
   Ship.prototype.fireBullet = function () {
-    // debugger
-    var norm = Asteroids.Util.norm(this.vel);
+    
 
-    if (norm === 0) {
-      // Can't fire unless moving.
-      return;
-    }
+    var shipFront = [this.pos[0] + (5 * Math.cos(this.rot)),
+                          this.pos[1] + (-5 * Math.sin(this.rot))];
 
-    var relVel = Asteroids.Util.scale(
-      Asteroids.Util.dir(this.vel),
+    var bulletDirection = Asteroids.Util.dir(
+      [(shipFront[0] - this.pos[0]), (shipFront[1] - this.pos[1])]
+    );
+
+    var bulletVector = Asteroids.Util.scale(
+      bulletDirection,
       Asteroids.Bullet.SPEED
     );
 
-    var bulletVel = [
-      relVel[0] + this.vel[0], relVel[1] + this.vel[1]
-    ];
+
+    // var norm = Asteroids.Util.norm(this.vel);
+    //
+    //
+    // var relVel = Asteroids.Util.scale(
+    //   Asteroids.Util.dir(this.vel),
+    //   Asteroids.Bullet.SPEED
+    // );
+    //
+    // var bulletVel = [
+    //   relVel[0] + this.vel[0], relVel[1] + this.vel[1]
+    // ];
+
+    // var bullet = new Asteroids.Bullet({
+    //   pos: this.pos.slice(),
+    //   vel: bulletVel,
+    //   // color: this.color,
+    //   game: this.game
+    // });
 
     var bullet = new Asteroids.Bullet({
       pos: this.pos.slice(),
-      vel: bulletVel,
+      vel: bulletVector,
       // color: this.color,
       game: this.game
     });
@@ -71,7 +88,7 @@
     ctx.lineTo(this.pos[0] + (5 * Math.cos(this.rot +  (Math.PI/2))),
                   this.pos[1] + (-5 * Math.sin(this.rot +  (Math.PI/2))));
     ctx.lineTo(this.pos[0] + (5 * Math.cos(this.rot -  (Math.PI/2))),
-                  this.pos[1] + (-5 * Math.sin(this.rot -  (Math.PI/2))));
+                  this.pos[1] + (-5 * Math.sin(this.rot - (Math.PI/2))));
     // ctx.arc(
     //   this.pos[0],
     //   this.pos[1],
