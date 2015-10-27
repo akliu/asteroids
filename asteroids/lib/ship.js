@@ -5,9 +5,11 @@
 
 
   var Ship = Asteroids.Ship = function (options) {
+    this.front = this.front || [50,50];
+    this.back = this.back || [50,60];
     options.radius = Ship.RADIUS;
     options.color = options.color || Ship.COLOR;
-    options.vel = options.vel || [1,0];
+    options.vel = options.vel || [0,0];
 
     Asteroids.MovingObject.call(this, options);
   };
@@ -48,6 +50,40 @@
     });
 
     this.game.addBullet(bullet);
+  };
+
+  Ship.prototype.draw = function(ctx){
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.moveTo(this.front[0], this.front[1]);
+    ctx.lineTo(this.back[0] - 5, this.back[1] );
+    ctx.lineTo(this.back[0] + 5, this.back[1] );
+    // ctx.arc(
+    //   this.pos[0],
+    //   this.pos[1],
+    //   this.radius,
+    //   0,
+    //   2 * Math.PI,
+    //   false
+    // );a
+
+    ctx.fill();
+  };
+
+  Ship.prototype.move = function () {
+
+    this.front[0] = this.front[0] + this.vel[0];
+    this.front[1] = this.front[1] + this.vel[1];
+    this.back[0] = this.back[0] + this.vel[0];
+    this.back[1] = this.back[1] + this.vel[1];
+
+    if (this.game.isOutOfBounds(this.pos)) {
+      if(this.isWrappable){
+        this.pos = this.game.wrap(this.pos);
+      } else {
+        this.game.remove(this);
+      }
+    }
   };
 
 })();
