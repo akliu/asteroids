@@ -2,15 +2,17 @@
   if (typeof Asteroids === "undefined") {
     window.Asteroids = {};
   }
-
-  var DIM_X = 700;
-  var DIM_Y = 700;
+  //
+  // var DIM_X = 700;
+  // var DIM_Y = 700;
   var NUM_ASTEROIDS = 5;
 
   // var Game = Asteroids.Game = function (xDim, yDim) {
-  var Game = Asteroids.Game = function () {
-    this.xDim = DIM_X;
-    this.yDim = DIM_Y;
+  var Game = Asteroids.Game = function (canvas) {
+    this.xDim = window.innerWidth;
+    this.yDim = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     // this.asteroids = this.addAsteroids();
     this.asteroids = [];
     this.bullets = [];
@@ -145,7 +147,7 @@
 
   Game.prototype.isOutOfBounds = function (pos) {
     return (pos[0] < 0) || (pos[1] < 0) ||
-      (pos[0] > DIM_X) || (pos[1] > DIM_Y);
+      (pos[0] > this.xDim) || (pos[1] > this.yDim);
   };
 
 })();

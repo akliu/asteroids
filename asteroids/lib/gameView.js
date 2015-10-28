@@ -36,6 +36,17 @@
   //
   // };
 
+  GameView.prototype.preventScrolling = function() {
+  window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+
+    if(e.keyIdentifier === "Up" || e.keyIdentifier === "Down" ||
+        e.keyIdentifier === "Left" || e.keyIdentifier === "Right"){
+          e.preventDefault();
+        }
+      });
+  };
+
   GameView.prototype.keyInput = function () {
     if (key.isPressed('up')) {
       this.ship.power("thrust");
@@ -60,13 +71,13 @@
     img.onload = function(){
       this.ctx.drawImage(img, 0, 0);
     }.bind(this);
-    img.src = "./BackgroundForAsteroids.png";
+    img.src = "./space-stars.jpg";
     setInterval(function() {
       that.keyInput();
       that.game.step();
       that.game.draw(that.ctx, img);
     }, 20);
 
-    // this.bindKeyHandlers();
+     this.preventScrolling();
   };
 })();
