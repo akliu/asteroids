@@ -19,20 +19,39 @@
   };
 
 
-  GameView.prototype.bindKeyHandlers = function () {
-    var ship = this.ship;
+  // GameView.prototype.bindKeyHandlers = function () {
+  //   var ship = this.ship;
+  //
+  //   Object.keys(GameView.MOVES).forEach(function (k) {
+  //     debugger
+  //     var move = GameView.MOVES[k];
+  //     key(k, function () {
+  //       ship.power(move);
+  //     });
+  //   });
+  //
+  //   key("space", function () {
+  //     ship.fireBullet();
+  //   });
+  //
+  // };
 
-    Object.keys(GameView.MOVES).forEach(function (k) {
-      var move = GameView.MOVES[k];
-      key(k, function () {
-        ship.power(move);
-      });
-    });
-
-    key("space", function () {
-      ship.fireBullet();
-    });
-
+  GameView.prototype.keyInput = function () {
+    if (key.isPressed('up')) {
+      this.ship.power("thrust");
+    }
+    if (key.isPressed('down')) {
+      this.ship.power("brake");
+    }
+    if (key.isPressed('left')) {
+      this.ship.power("rotateLeft");
+    }
+    if (key.isPressed('right')) {
+      this.ship.power("rotateRight");
+    }
+    if (key.isPressed('space')) {
+      this.ship.fireBullet();
+    }
   };
 
   GameView.prototype.start = function () {
@@ -43,10 +62,11 @@
     }.bind(this);
     img.src = "./BackgroundForAsteroids.png";
     setInterval(function() {
+      that.keyInput();
       that.game.step();
       that.game.draw(that.ctx, img);
     }, 20);
 
-    this.bindKeyHandlers();
+    // this.bindKeyHandlers();
   };
 })();

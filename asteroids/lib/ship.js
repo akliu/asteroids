@@ -24,20 +24,20 @@
   Ship.prototype.power = function (impulse) {
     // debugger
     if(impulse === "thrust"){
-      this.vel[0] += Math.cos(this.rot);
-      this.vel[1] += -Math.sin(this.rot);
+      this.vel[0] += Math.cos(this.rot) * 0.1;
+      this.vel[1] += -Math.sin(this.rot) * 0.1;
     } else if (impulse === "brake"){
       this.vel[0] = 0;
       this.vel[1] = 0;
     } else if (impulse === "rotateLeft"){
-      this.rot += (2 * Math.PI)/32;
+      this.rot += (2 * Math.PI)/64;
     } else if (impulse === "rotateRight"){
-      this.rot += -(2 * Math.PI)/32;
+      this.rot += -(2 * Math.PI)/64;
     }
   };
 
   Ship.prototype.fireBullet = function () {
-    
+
 
     var shipFront = [this.pos[0] + (5 * Math.cos(this.rot)),
                           this.pos[1] + (-5 * Math.sin(this.rot))];
