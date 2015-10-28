@@ -121,4 +121,11 @@
     }
   };
 
+  Ship.prototype.collideWith = function (otherObject) {
+    if (otherObject instanceof Asteroids.Asteroid) {
+      this.game.damage += 30;
+    }
+    console.log(this.game.damage);
+  };
+
 })();

@@ -9,6 +9,7 @@
     this.ship = this.game.addShip();
 
 
+
   };
 
   GameView.MOVES = {
@@ -73,9 +74,13 @@
     }.bind(this);
     img.src = "./space-stars.jpg";
     setInterval(function() {
-      that.keyInput();
-      that.game.step();
-      that.game.draw(that.ctx, img);
+      if(that.game.damage < 100){
+        that.keyInput();
+        that.game.step();
+        that.game.draw(that.ctx, img);
+      }else {
+        that.game.drawOver(that.ctx, img);
+      }
     }, 20);
 
      this.preventScrolling();

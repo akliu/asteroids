@@ -18,6 +18,7 @@
     this.bullets = [];
     // this.ship = this.addShip( );
     this.ships = [];
+    this.damage = 0;
 
     this.addAsteroids();
 
@@ -63,10 +64,19 @@
     }
   };
 
+  Game.prototype.drawOver = function(ctx, img){
+    ctx.clearRect(0, 0, this.xDim, this.yDim);
+
+    ctx.drawImage(img, 0, 0);
+    ctx.font = '48px Helvetica Neue';
+    ctx.fillText('You lose!', this.xDim/2, this.yDim/2);
+  },
+
   Game.prototype.draw = function (ctx, img) {
     ctx.clearRect(0, 0, this.xDim, this.yDim);
 
     ctx.drawImage(img, 0, 0);
+
     ctx.textAlign = 'left';
     ctx.font = '20px Helvetica Neue';
     ctx.fillText("Right/Left to Rotate", 40, this.yDim - 100);
@@ -90,8 +100,6 @@
   };
 
   Game.prototype.wrap = function (pos) {
-    //pos[0] current x pos
-    //pos[1] current y pos
     var curX = pos[0];
     var curY = pos[1];
     var wrappedPos = [curX, curY];
@@ -123,7 +131,6 @@
     this.allObjects().forEach(function (obj1) {
       game.allObjects().forEach(function (obj2) {
         if (obj1 == obj2) {
-          // don't allow self-collision
           return;
         }
 
