@@ -67,6 +67,11 @@
     ctx.clearRect(0, 0, this.xDim, this.yDim);
 
     ctx.drawImage(img, 0, 0);
+    ctx.textAlign = 'left';
+    ctx.font = '20px Helvetica Neue';
+    ctx.fillText("Right/Left to Rotate", 40, this.yDim - 100);
+    ctx.fillText("Up/Down to Move", 40, this.yDim - 70);
+    ctx.fillText("Spacebar to Shoot", 40, this.yDim - 40);
 
     this.allObjects().forEach(function(object) {
       object.draw(ctx);
@@ -105,7 +110,7 @@
       wrappedPos[1] = curY + this.yDim;
     }
 
-    if (curY > this.xDim) {
+    if (curY > this.yDim) {
       wrappedPos[1] = curY - this.yDim;
     }
 
