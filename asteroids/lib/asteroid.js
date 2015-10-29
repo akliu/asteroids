@@ -5,16 +5,16 @@
 
 
   var Asteroid = Asteroids.Asteroid = function (options) {
-    this.health = 3;
-    options.vel = Asteroids.Util.randomVelocity(2);
-    options.radius = Asteroid.RADIUS;
+    this.health = options.health || 3;
+    options.vel = options.vel || Asteroids.Util.randomVelocity(2);
+    options.radius = options.radius || 15;
     options.color = Asteroid.COLOR;
 
     Asteroids.MovingObject.call(this, options);
   };
 
   Asteroid.COLOR = "#F4A460";
-  Asteroid.RADIUS = 15;
+  // Asteroid.RADIUS = 15;
   Asteroids.Util.inherits(Asteroid, Asteroids.MovingObject);
 
   Asteroid.prototype.collideWith = function (otherObject) {

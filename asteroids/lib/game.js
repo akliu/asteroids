@@ -54,6 +54,10 @@
     this.bullets.push(bullet);
   };
 
+  Game.prototype.addAsteroid = function(asteroid) {
+    this.asteroids.push(asteroid);
+  };
+
   // Game.prototype.addShip = function () {
   //   var ship = new Asteroids.Ship( this.randomPosition(), this);
   //
