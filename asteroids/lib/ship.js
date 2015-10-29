@@ -15,7 +15,7 @@
 
     Asteroids.MovingObject.call(this, options);
   };
-  Ship.RADIUS = 5;
+  Ship.RADIUS = 10;
 
   Ship.COLOR = "#FF0000";
 
@@ -27,8 +27,8 @@
       this.vel[0] += Math.cos(this.rot) * 0.1;
       this.vel[1] += -Math.sin(this.rot) * 0.1;
     } else if (impulse === "brake"){
-      this.vel[0] = 0;
-      this.vel[1] = 0;
+      this.vel[0] = this.vel[0] * 0.9;
+      this.vel[1] = this.vel[1] * 0.9;
     } else if (impulse === "rotateLeft"){
       this.rot += (2 * Math.PI)/64;
     } else if (impulse === "rotateRight"){
@@ -37,39 +37,18 @@
   };
 
   Ship.prototype.fireBullet = function () {
-
-
     var shipFront = [this.pos[0] + (5 * Math.cos(this.rot)),
                           this.pos[1] + (-5 * Math.sin(this.rot))];
-
     var bulletDirection = Asteroids.Util.dir(
       [(shipFront[0] - this.pos[0]), (shipFront[1] - this.pos[1])]
     );
-
     var bulletVector = Asteroids.Util.scale(
       bulletDirection,
       Asteroids.Bullet.SPEED
     );
 
-
-    // var norm = Asteroids.Util.norm(this.vel);
-    //
-    //
-    // var relVel = Asteroids.Util.scale(
-    //   Asteroids.Util.dir(this.vel),
-    //   Asteroids.Bullet.SPEED
-    // );
-    //
-    // var bulletVel = [
-    //   relVel[0] + this.vel[0], relVel[1] + this.vel[1]
-    // ];
-
-    // var bullet = new Asteroids.Bullet({
-    //   pos: this.pos.slice(),
-    //   vel: bulletVel,
-    //   // color: this.color,
-    //   game: this.game
-    // });
+    this.vel[0] -= bulletDirection[0] * 0.03;
+    this.vel[1] -= bulletDirection[1] * 0.03;
 
     var bullet = new Asteroids.Bullet({
       pos: this.pos.slice(),
@@ -84,11 +63,11 @@
   Ship.prototype.draw = function(ctx){
     ctx.fillStyle = this.color;
     ctx.beginPath();
-    ctx.moveTo(this.pos[0] + (5 * Math.cos(this.rot)), this.pos[1] + (-5 * Math.sin(this.rot)));
-    ctx.lineTo(this.pos[0] + (5 * Math.cos(this.rot +  (Math.PI/2))),
-                  this.pos[1] + (-5 * Math.sin(this.rot +  (Math.PI/2))));
-    ctx.lineTo(this.pos[0] + (5 * Math.cos(this.rot -  (Math.PI/2))),
-                  this.pos[1] + (-5 * Math.sin(this.rot - (Math.PI/2))));
+    ctx.moveTo(this.pos[0] + (Ship.RADIUS * Math.cos(this.rot)), this.pos[1] + (-Ship.RADIUS * Math.sin(this.rot)));
+    ctx.lineTo(this.pos[0] + (Ship.RADIUS * Math.cos(this.rot +  ( 1.5 * Math.PI/2))),
+                  this.pos[1] + (-Ship.RADIUS * Math.sin(this.rot +  ( 1.5 * Math.PI/2))));
+    ctx.lineTo(this.pos[0] + (Ship.RADIUS * Math.cos(this.rot -  ( 1.5 * Math.PI/2))),
+                  this.pos[1] + (-Ship.RADIUS * Math.sin(this.rot - ( 1.5 * Math.PI/2))));
     // ctx.arc(
     //   this.pos[0],
     //   this.pos[1],

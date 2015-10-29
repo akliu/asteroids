@@ -7,7 +7,7 @@
   var Asteroid = Asteroids.Asteroid = function (options) {
     this.health = options.health || 3;
     options.vel = options.vel || Asteroids.Util.randomVelocity(2);
-    options.radius = options.radius || 15;
+    options.radius = options.radius || 25;
     options.color = Asteroid.COLOR;
 
     Asteroids.MovingObject.call(this, options);

@@ -27,15 +27,15 @@
         this.game.addSprite(sprite);
 
 
-      if (otherObject.radius === 15) {
+      if (otherObject.radius === 25) {
         var newAsteroid1 = new Asteroids.Asteroid({pos: this.pos.slice(),
-              vel: Asteroids.Util.randomVelocity(10), radius: 5, health: 2,
+              vel: Asteroids.Util.randomVelocity(8), radius: 10, health: 2,
               game: this.game});
         var newAsteroid2 = new Asteroids.Asteroid({pos: this.pos.slice(),
-              vel: Asteroids.Util.randomVelocity(10), radius: 5, health: 2,
+              vel: Asteroids.Util.randomVelocity(8), radius: 10, health: 2,
               game: this.game});
         var newAsteroid3 = new Asteroids.Asteroid({pos: this.pos.slice(),
-              vel: Asteroids.Util.randomVelocity(10), radius: 5, health: 2,
+              vel: Asteroids.Util.randomVelocity(8), radius: 10, health: 2,
               game: this.game});
         this.game.addAsteroid(newAsteroid1);
         this.game.addAsteroid(newAsteroid2);
