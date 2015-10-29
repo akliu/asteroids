@@ -20,8 +20,8 @@
   Bullet.prototype.collideWith  = function (otherObject) {
 
     if (otherObject instanceof Asteroids.Asteroid){
-      var sprite = new Asteroids.Sprite({pos: this.pos,
-                        url: "./GrenadeExplosion.png", frames: [0,1,2,3,4,5,6,7]});
+      var sprite = new Asteroids.Sprite({pos: this.pos, game: this.game,
+                        url: "./GrenadeExplosion.png", frames: 20});
       this.game.addSprite(sprite);
       this.game.remove(otherObject);
       this.game.remove(this);

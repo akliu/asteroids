@@ -5,7 +5,7 @@
   //
   // var DIM_X = 700;
   // var DIM_Y = 700;
-  var NUM_ASTEROIDS = 5;
+  var NUM_ASTEROIDS = 50;
 
   // var Game = Asteroids.Game = function (xDim, yDim) {
   var Game = Asteroids.Game = function (canvas) {
@@ -90,6 +90,8 @@
     ctx.fillText("Up/Down to Move", 40, this.yDim - 70);
     ctx.fillText("Spacebar to Shoot", 40, this.yDim - 40);
 
+    console.log(this.sprites);
+
     this.sprites.forEach(function(sprite){
       sprite.render(ctx);
       sprite.update();
@@ -168,6 +170,8 @@
       this.asteroids = result;
     } else if (object instanceof Asteroids.Bullet) {
       this.bullets.splice(this.bullets.indexOf(object), 1);
+    } else if (object instanceof Asteroids.Sprite){
+      this.sprites.splice(this.sprites.indexOf(object), 1);
     }
   };
 

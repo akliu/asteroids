@@ -5,6 +5,7 @@
 
 
     var Sprite = Asteroids.Sprite = function(options) {
+        this.game = options.game;
         this.pos = options.pos;
         this.size = options.size;
         this.speed = typeof options.speed === 'number' ? options.speed : 0;
@@ -20,6 +21,9 @@
     Sprite.prototype = {
         update: function() {
             this._index += 1;
+            if(this._index > this.frames){
+              this.game.remove(this);
+            }
         },
 
         render: function(ctx) {
