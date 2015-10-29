@@ -87,6 +87,7 @@
     ctx.fillText("Spacebar to Shoot", 40, this.yDim - 40);
 
     this.sprite.render(ctx);
+    this.sprite.update();
 
     this.allObjects().forEach(function(object) {
       object.draw(ctx);
