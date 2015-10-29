@@ -18,7 +18,7 @@
     this.bullets = [];
     // this.ship = this.addShip( );
     this.ships = [];
-    this.damage = 0;
+    this.lives = 3;
     this.sprites = [];
     // this.sprite = new Asteroids.Sprite({pos: [10,10], size: 15, speed: 1,
     //                   url: "./GrenadeExplosion.png", frames: [0,1,2,3,4,5,6,7]});
@@ -86,6 +86,7 @@
 
     ctx.textAlign = 'left';
     ctx.font = '20px Helvetica Neue';
+    ctx.fillText("Lives Remaining: " + this.lives, 40, this.yDim - 130);
     ctx.fillText("Right/Left to Rotate", 40, this.yDim - 100);
     ctx.fillText("Up/Down to Move", 40, this.yDim - 70);
     ctx.fillText("Spacebar to Shoot", 40, this.yDim - 40);

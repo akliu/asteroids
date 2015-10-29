@@ -123,7 +123,7 @@
 
   Ship.prototype.collideWith = function (otherObject) {
     if (otherObject instanceof Asteroids.Asteroid) {
-      this.game.damage += 30;
+      this.game.lives -= 1;
     }
     console.log(this.game.damage);
   };

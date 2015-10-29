@@ -74,7 +74,7 @@
     }.bind(this);
     img.src = "./space-stars.jpg";
     setInterval(function() {
-      if(that.game.damage < 100){
+      if(that.game.lives >= 0){
         that.keyInput();
         that.game.step();
         that.game.draw(that.ctx, img);
