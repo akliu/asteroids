@@ -20,11 +20,15 @@
   Bullet.prototype.collideWith  = function (otherObject) {
 
     if (otherObject instanceof Asteroids.Asteroid){
-      var sprite = new Asteroids.Sprite({pos: this.pos, game: this.game,
-                        url: "./GrenadeExplosion.png", frames: 20});
-      this.game.addSprite(sprite);
-      this.game.remove(otherObject);
-      this.game.remove(this);
+      if (otherObject.health === 0) {
+        var sprite = new Asteroids.Sprite({pos: this.pos, game: this.game,
+                          url: "./GrenadeExplosion.png", frames: 20});
+        this.game.addSprite(sprite);
+        this.game.remove(otherObject);
+        this.game.remove(this);
+      } else {
+        otherObject.health -= 1;
+      }
     }
   };
 

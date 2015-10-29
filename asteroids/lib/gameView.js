@@ -7,8 +7,7 @@
     this.game = game;
     this.ctx = ctx;
     this.ship = this.game.addShip();
-
-
+    this.recharge = 0;
 
   };
 
@@ -62,7 +61,10 @@
       this.ship.power("rotateRight");
     }
     if (key.isPressed('space')) {
-      this.ship.fireBullet();
+      if (this.recharge === 0){
+        this.ship.fireBullet();
+        this.recharge = 3;
+      }
     }
   };
 
@@ -75,6 +77,9 @@
     img.src = "./space-stars.jpg";
     setInterval(function() {
       if(that.game.lives >= 0){
+        if(that.recharge > 0){
+          that.recharge -= 1;
+        }
         that.keyInput();
         that.game.step();
         that.game.draw(that.ctx, img);
