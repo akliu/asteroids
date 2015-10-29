@@ -19,7 +19,8 @@
 
   Asteroid.prototype.collideWith = function (otherObject) {
     if (otherObject instanceof Asteroids.Ship) {
-      otherObject.pos = this.game.randomPosition();
+      otherObject.pos = this.game.centerPosition();
+      otherObject.vel = [0,0];
     }
   };
 })();

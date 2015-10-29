@@ -5,7 +5,7 @@
   //
   // var DIM_X = 700;
   // var DIM_Y = 700;
-  var NUM_ASTEROIDS = 1;
+  var NUM_ASTEROIDS = 12;
 
   // var Game = Asteroids.Game = function (xDim, yDim) {
   var Game = Asteroids.Game = function (canvas) {
@@ -34,7 +34,7 @@
 
   Game.prototype.addShip = function () {
     var ship = new Asteroids.Ship({
-      pos: this.randomPosition(),
+      pos: this.centerPosition(),
       game: this
     });
 
@@ -48,6 +48,10 @@
 
   Game.prototype.randomPosition = function () {
     return [this.xDim * Math.random(), this.yDim * Math.random()];
+  };
+
+  Game.prototype.centerPosition = function () {
+    return [this.xDim / 2 , this.yDim / 2];
   };
 
   Game.prototype.addBullet = function(bullet) {

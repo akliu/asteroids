@@ -68,25 +68,12 @@
                   this.pos[1] + (-Ship.RADIUS * Math.sin(this.rot +  ( 1.5 * Math.PI/2))));
     ctx.lineTo(this.pos[0] + (Ship.RADIUS * Math.cos(this.rot -  ( 1.5 * Math.PI/2))),
                   this.pos[1] + (-Ship.RADIUS * Math.sin(this.rot - ( 1.5 * Math.PI/2))));
-    // ctx.arc(
-    //   this.pos[0],
-    //   this.pos[1],
-    //   this.radius,
-    //   0,
-    //   2 * Math.PI,
-    //   false
-    // );a
 
     ctx.fill();
 
   };
 
   Ship.prototype.move = function () {
-
-    // this.front[0] = this.front[0] + this.vel[0];
-    // this.front[1] = this.front[1] + this.vel[1];
-    // this.back[0] = this.back[0] + this.vel[0];
-    // this.back[1] = this.back[1] + this.vel[1];
 
     this.pos[0] = this.pos[0] + this.vel[0];
     this.pos[1] = this.pos[1] + this.vel[1];

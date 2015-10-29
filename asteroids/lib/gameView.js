@@ -11,30 +11,6 @@
 
   };
 
-  GameView.MOVES = {
-    "up": "thrust",
-    "left": "rotateLeft",
-    "down": "brake",
-    "right": "rotateRight",
-  };
-
-
-  // GameView.prototype.bindKeyHandlers = function () {
-  //   var ship = this.ship;
-  //
-  //   Object.keys(GameView.MOVES).forEach(function (k) {
-  //     debugger
-  //     var move = GameView.MOVES[k];
-  //     key(k, function () {
-  //       ship.power(move);
-  //     });
-  //   });
-  //
-  //   key("space", function () {
-  //     ship.fireBullet();
-  //   });
-  //
-  // };
 
   GameView.prototype.preventScrolling = function() {
   window.addEventListener("keydown", function(e) {
