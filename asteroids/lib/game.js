@@ -20,6 +20,9 @@
     this.ships = [];
     this.damage = 0;
 
+    this.sprite = new Asteroids.Sprite({pos: [10,10], size: 15, speed: 1,
+                      url: "./GrenadeExplosion.png", frames: [0,1,2,3,4,5,6,7]});
+
     this.addAsteroids();
 
 
@@ -82,6 +85,8 @@
     ctx.fillText("Right/Left to Rotate", 40, this.yDim - 100);
     ctx.fillText("Up/Down to Move", 40, this.yDim - 70);
     ctx.fillText("Spacebar to Shoot", 40, this.yDim - 40);
+
+    this.sprite.render(ctx);
 
     this.allObjects().forEach(function(object) {
       object.draw(ctx);
