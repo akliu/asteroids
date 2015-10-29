@@ -19,13 +19,17 @@
     // this.ship = this.addShip( );
     this.ships = [];
     this.damage = 0;
-
-    this.sprite = new Asteroids.Sprite({pos: [10,10], size: 15, speed: 1,
-                      url: "./GrenadeExplosion.png", frames: [0,1,2,3,4,5,6,7]});
+    this.sprites = [];
+    // this.sprite = new Asteroids.Sprite({pos: [10,10], size: 15, speed: 1,
+    //                   url: "./GrenadeExplosion.png", frames: [0,1,2,3,4,5,6,7]});
 
     this.addAsteroids();
 
 
+  };
+
+  Game.prototype.addSprite = function (sprite){
+    this.sprites.push(sprite);
   };
 
   Game.prototype.addShip = function () {
@@ -86,8 +90,12 @@
     ctx.fillText("Up/Down to Move", 40, this.yDim - 70);
     ctx.fillText("Spacebar to Shoot", 40, this.yDim - 40);
 
-    this.sprite.render(ctx);
-    this.sprite.update();
+    this.sprites.forEach(function(sprite){
+      sprite.render(ctx);
+      sprite.update();
+    }.bind(this));
+    // this.sprite.render(ctx);
+    // this.sprite.update();
 
     this.allObjects().forEach(function(object) {
       object.draw(ctx);

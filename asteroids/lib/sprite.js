@@ -55,7 +55,7 @@
             ctx.drawImage(this.img,
                           image, 0,
                           50, 100,
-                          50, 50,
+                          this.pos[0] - 25, this.pos[1] - 50,
                           50, 100);
         }
     };
