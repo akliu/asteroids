@@ -115,6 +115,10 @@
         that.game.draw(that.ctx, that.img);
       }else {
         that.game.drawOver(that.ctx, that.img);
+        if(key.isPressed('space')){
+          that.game = new Asteroids.Game(document.getElementById("game-canvas"));
+          that.ship = that.game.addShip();
+        }
       }
     }, 20);
 
