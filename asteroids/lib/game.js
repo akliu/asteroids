@@ -82,9 +82,9 @@
   Game.prototype.drawIntro = function(ctx){
     ctx.font = '48px Helvetica Neue';
     ctx.fillStyle = 'white';
-    ctx.fillText('Asteroids!', (this.xDim / 2) - 50, (this.yDim / 2) - 50);
+    ctx.fillText('Asteroids!', (this.xDim / 2) - 100, (this.yDim / 2) - 50);
     ctx.font = '24px Helvetica Neue';
-    ctx.fillText('Press space to start!', (this.xDim / 2) - 50, (this.yDim / 2));
+    ctx.fillText('Press enter to start!', (this.xDim / 2) - 100, (this.yDim / 2));
   };
 
   Game.prototype.drawOver = function(ctx, img){
@@ -92,7 +92,10 @@
 
     ctx.drawImage(img, 0, 0);
     ctx.font = '48px Helvetica Neue';
-    ctx.fillText('You lose!', this.xDim / 2, this.yDim / 2);
+    ctx.fillStyle = 'white';
+    ctx.fillText('You lose!', (this.xDim / 2) - 100, (this.yDim / 2) - 50);
+    ctx.font = '24px Helvetica Neue';
+    ctx.fillText('Press enter to play again', (this.xDim / 2) - 120, this.yDim / 2);
   };
 
   Game.prototype.draw = function (ctx, img) {
@@ -102,6 +105,7 @@
 
     ctx.textAlign = 'left';
     ctx.font = '20px Helvetica Neue';
+    ctx.fillStyle = 'white';
     ctx.fillText("Lives Remaining: " + this.lives, 40, this.yDim - 130);
     ctx.fillText("Right/Left to Rotate", 40, this.yDim - 100);
     ctx.fillText("Up/Down to Move", 40, this.yDim - 70);

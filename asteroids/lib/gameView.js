@@ -91,7 +91,7 @@
       // that.ctx.font = '24px Helvetica Neue';
       // that.ctx.fillText('Press space to start!', 500, 600);
       that.game.drawIntro(that.ctx);
-      if (key.isPressed('space')){
+      if (key.isPressed('enter')){
         that.start();
         clearInterval(watchForSpace);
       }
@@ -115,7 +115,7 @@
         that.game.draw(that.ctx, that.img);
       }else {
         that.game.drawOver(that.ctx, that.img);
-        if(key.isPressed('space')){
+        if(key.isPressed('enter')){
           that.game = new Asteroids.Game(document.getElementById("game-canvas"));
           that.ship = that.game.addShip();
         }
