@@ -1,18 +1,18 @@
 <html>
   <head>
     <title>Asteroids</title>
-  <style>
+    <style>
 
-    * {
-      margin: 0;
-      padding: 0;
-    }
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
-    body {
-      overflow: hidden;
-    }
+      body {
+        overflow: hidden;
+      }
 
-  </style>
+    </style>
   </head>
   <body>
     <div>
@@ -31,7 +31,7 @@
       var canvasEl = document.getElementById("game-canvas");
       var game = new Asteroids.Game(canvasEl);
       var gameView = new Asteroids.GameView(game, canvasEl.getContext("2d"));
-      gameView.start();
+      gameView.intro();
     </script>
   </body>
 </html>

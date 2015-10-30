@@ -8,7 +8,12 @@
     this.ctx = ctx;
     this.ship = this.game.addShip();
     this.recharge = 0;
+    this.img = new Image();
 
+    this.img.onload = function(){
+      this.ctx.drawImage(this.img, 0, 0);
+    }.bind(this);
+    this.img.src = "./space-stars.jpg";
   };
 
 
@@ -22,6 +27,31 @@
         }
       });
   };
+
+  // GameView.prototype.startGame = function(){
+  //   var that = this;
+  //   window.addEventListener("keydown", function(e){
+  //     debugger
+  //     e.preventDefault();
+  //     if(e.keyIdentifier === "U+0020"){
+  //       that.gameStarted();
+  //       that.start();
+  //     }
+  //
+  //   });
+  // };
+  //
+  // GameView.prototype.gameStarted = function(){
+  //   window.removeEventListener("keydown", function(e){
+  //     // debugger
+  //     e.preventDefault();
+  //     if(e.keyIdentifier === "U+0020"){
+  //       that.start();
+  //       that.gameStarted();
+  //     }
+  //
+  //   });
+  // };
 
   GameView.prototype.keyInput = function () {
     if (key.isPressed('up')) {
@@ -44,13 +74,37 @@
     }
   };
 
+  GameView.prototype.intro = function () {
+    var that = this;
+    // var img = new Image();
+    // img.onload = function(){
+    //   this.ctx.drawImage(img, 0, 0);
+    // }.bind(this);
+    // img.src = "./space-stars.jpg";
+
+
+
+    var watchForSpace = setInterval(function(){
+      // that.ctx.font = '48px Helvetica Neue';
+      // that.ctx.fillStyle = 'white';
+      // that.ctx.fillText('Asteroids!', 500, 500);
+      // that.ctx.font = '24px Helvetica Neue';
+      // that.ctx.fillText('Press space to start!', 500, 600);
+      that.game.drawIntro(that.ctx);
+      if (key.isPressed('space')){
+        that.start();
+        clearInterval(watchForSpace);
+      }
+    }, 20);
+  };
+
   GameView.prototype.start = function () {
     var that = this;
-    var img = new Image();
-    img.onload = function(){
-      this.ctx.drawImage(img, 0, 0);
-    }.bind(this);
-    img.src = "./space-stars.jpg";
+    // var img = new Image();
+    // img.onload = function(){
+    //   this.ctx.drawImage(img, 0, 0);
+    // }.bind(this);
+    // img.src = "./space-stars.jpg";
     setInterval(function() {
       if(that.game.lives >= 0){
         if(that.recharge > 0){
@@ -58,9 +112,9 @@
         }
         that.keyInput();
         that.game.step();
-        that.game.draw(that.ctx, img);
+        that.game.draw(that.ctx, that.img);
       }else {
-        that.game.drawOver(that.ctx, img);
+        that.game.drawOver(that.ctx, that.img);
       }
     }, 20);
 

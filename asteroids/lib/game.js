@@ -79,13 +79,21 @@
     }
   };
 
+  Game.prototype.drawIntro = function(ctx){
+    ctx.font = '48px Helvetica Neue';
+    ctx.fillStyle = 'white';
+    ctx.fillText('Asteroids!', (this.xDim / 2) - 50, (this.yDim / 2) - 50);
+    ctx.font = '24px Helvetica Neue';
+    ctx.fillText('Press space to start!', (this.xDim / 2) - 50, (this.yDim / 2));
+  };
+
   Game.prototype.drawOver = function(ctx, img){
     ctx.clearRect(0, 0, this.xDim, this.yDim);
 
     ctx.drawImage(img, 0, 0);
     ctx.font = '48px Helvetica Neue';
-    ctx.fillText('You lose!', this.xDim/2, this.yDim/2);
-  },
+    ctx.fillText('You lose!', this.xDim / 2, this.yDim / 2);
+  };
 
   Game.prototype.draw = function (ctx, img) {
     ctx.clearRect(0, 0, this.xDim, this.yDim);
